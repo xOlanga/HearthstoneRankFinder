@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "lX53GOCSIaMK1CfABGgzWy785+hbh/HW9d8icuFT0CGyCwQxoEKk1X+B3VtEF6ADVl2WAXJh4M9zcOf3BPMl8g==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\juliu\\Desktop\\Coding Projects\\Rank Finder\\Hearthstone Rank Finder\\Hearthstone Rank Finder\\Hearthstone Rank Finder.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\juliu\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

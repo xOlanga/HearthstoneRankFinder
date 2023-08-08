@@ -1,0 +1,20 @@
+C:\Users\juliu\Desktop\Coding Projects\Rank Finder\Hearthstone Rank Finder\Hearthstone Rank Finder\bin\Release\net7.0-windows\Hearthstone Rank Finder.exe
+C:\Users\juliu\Desktop\Coding Projects\Rank Finder\Hearthstone Rank Finder\Hearthstone Rank Finder\bin\Release\net7.0-windows\Hearthstone Rank Finder.deps.json
+C:\Users\juliu\Desktop\Coding Projects\Rank Finder\Hearthstone Rank Finder\Hearthstone Rank Finder\bin\Release\net7.0-windows\Hearthstone Rank Finder.runtimeconfig.json
+C:\Users\juliu\Desktop\Coding Projects\Rank Finder\Hearthstone Rank Finder\Hearthstone Rank Finder\bin\Release\net7.0-windows\Hearthstone Rank Finder.dll
+C:\Users\juliu\Desktop\Coding Projects\Rank Finder\Hearthstone Rank Finder\Hearthstone Rank Finder\bin\Release\net7.0-windows\Hearthstone Rank Finder.pdb
+C:\Users\juliu\Desktop\Coding Projects\Rank Finder\Hearthstone Rank Finder\Hearthstone Rank Finder\bin\Release\net7.0-windows\Newtonsoft.Json.dll
+C:\Users\juliu\Desktop\Coding Projects\Rank Finder\Hearthstone Rank Finder\Hearthstone Rank Finder\obj\Release\net7.0-windows\Hearthstone Rank Finder.csproj.AssemblyReference.cache
+C:\Users\juliu\Desktop\Coding Projects\Rank Finder\Hearthstone Rank Finder\Hearthstone Rank Finder\obj\Release\net7.0-windows\Hearthstone_Rank_Finder.RankLookup.resources
+C:\Users\juliu\Desktop\Coding Projects\Rank Finder\Hearthstone Rank Finder\Hearthstone Rank Finder\obj\Release\net7.0-windows\Hearthstone Rank Finder.csproj.GenerateResource.cache
+C:\Users\juliu\Desktop\Coding Projects\Rank Finder\Hearthstone Rank Finder\Hearthstone Rank Finder\obj\Release\net7.0-windows\Hearthstone Rank Finder.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\juliu\Desktop\Coding Projects\Rank Finder\Hearthstone Rank Finder\Hearthstone Rank Finder\obj\Release\net7.0-windows\Hearthstone Rank Finder.AssemblyInfoInputs.cache
+C:\Users\juliu\Desktop\Coding Projects\Rank Finder\Hearthstone Rank Finder\Hearthstone Rank Finder\obj\Release\net7.0-windows\Hearthstone Rank Finder.AssemblyInfo.cs
+C:\Users\juliu\Desktop\Coding Projects\Rank Finder\Hearthstone Rank Finder\Hearthstone Rank Finder\obj\Release\net7.0-windows\Hearthstone Rank Finder.csproj.CoreCompileInputs.cache
+C:\Users\juliu\Desktop\Coding Projects\Rank Finder\Hearthstone Rank Finder\Hearthstone Rank Finder\obj\Release\net7.0-windows\Hearthstone Rank Finder.csproj.CopyComplete
+C:\Users\juliu\Desktop\Coding Projects\Rank Finder\Hearthstone Rank Finder\Hearthstone Rank Finder\obj\Release\net7.0-windows\Hearthstone Rank Finder.dll
+C:\Users\juliu\Desktop\Coding Projects\Rank Finder\Hearthstone Rank Finder\Hearthstone Rank Finder\obj\Release\net7.0-windows\refint\Hearthstone Rank Finder.dll
+C:\Users\juliu\Desktop\Coding Projects\Rank Finder\Hearthstone Rank Finder\Hearthstone Rank Finder\obj\Release\net7.0-windows\Hearthstone Rank Finder.pdb
+C:\Users\juliu\Desktop\Coding Projects\Rank Finder\Hearthstone Rank Finder\Hearthstone Rank Finder\obj\Release\net7.0-windows\Hearthstone Rank Finder.genruntimeconfig.cache
+C:\Users\juliu\Desktop\Coding Projects\Rank Finder\Hearthstone Rank Finder\Hearthstone Rank Finder\obj\Release\net7.0-windows\ref\Hearthstone Rank Finder.dll
+C:\Users\juliu\Desktop\Coding Projects\Rank Finder\Hearthstone Rank Finder\Hearthstone Rank Finder\obj\Release\net7.0-windows\Hearthstone_Rank_Finder.Properties.Resources.resources
