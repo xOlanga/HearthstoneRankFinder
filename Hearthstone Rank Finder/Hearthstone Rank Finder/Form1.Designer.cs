@@ -48,13 +48,23 @@
             LogsLabel = new Label();
             StopSearchingButton = new Button();
             label1 = new Label();
+            DiscordWebhookTextbox = new TextBox();
+            WebhookLabel = new Label();
+            SetWebhookButton = new Button();
+            ResetWebhookButton = new Button();
+            NotificationCheckbox = new CheckBox();
+            NotificationTypeCheckedListBox = new CheckedListBox();
+            RefreshRateNumericUpDown = new NumericUpDown();
+            label2 = new Label();
+            backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            ((System.ComponentModel.ISupportInitialize)RefreshRateNumericUpDown).BeginInit();
             SuspendLayout();
             // 
             // SearchPlayerLabel
             // 
             SearchPlayerLabel.AutoSize = true;
             SearchPlayerLabel.BackColor = Color.Transparent;
-            SearchPlayerLabel.ForeColor = Color.Transparent;
+            SearchPlayerLabel.ForeColor = SystemColors.ButtonFace;
             SearchPlayerLabel.Location = new Point(10, 110);
             SearchPlayerLabel.Name = "SearchPlayerLabel";
             SearchPlayerLabel.Size = new Size(80, 15);
@@ -102,7 +112,7 @@
             // 
             SelectModeLabel.AutoSize = true;
             SelectModeLabel.BackColor = Color.Transparent;
-            SelectModeLabel.ForeColor = Color.Transparent;
+            SelectModeLabel.ForeColor = SystemColors.ButtonFace;
             SelectModeLabel.Location = new Point(10, 78);
             SelectModeLabel.Name = "SelectModeLabel";
             SelectModeLabel.Size = new Size(75, 15);
@@ -144,7 +154,7 @@
             SearchButton.FlatStyle = FlatStyle.System;
             SearchButton.Location = new Point(99, 136);
             SearchButton.Name = "SearchButton";
-            SearchButton.Size = new Size(119, 23);
+            SearchButton.Size = new Size(121, 23);
             SearchButton.TabIndex = 5;
             SearchButton.Text = "Search";
             SearchButton.UseVisualStyleBackColor = false;
@@ -167,7 +177,7 @@
             StartStalkingButton.BackColor = SystemColors.ButtonHighlight;
             StartStalkingButton.Enabled = false;
             StartStalkingButton.FlatStyle = FlatStyle.System;
-            StartStalkingButton.Location = new Point(10, 206);
+            StartStalkingButton.Location = new Point(10, 205);
             StartStalkingButton.Margin = new Padding(2, 1, 2, 1);
             StartStalkingButton.Name = "StartStalkingButton";
             StartStalkingButton.Size = new Size(93, 22);
@@ -181,7 +191,7 @@
             StopStalkingButton.BackColor = SystemColors.ButtonHighlight;
             StopStalkingButton.Enabled = false;
             StopStalkingButton.FlatStyle = FlatStyle.System;
-            StopStalkingButton.Location = new Point(127, 206);
+            StopStalkingButton.Location = new Point(128, 206);
             StopStalkingButton.Margin = new Padding(2, 1, 2, 1);
             StopStalkingButton.Name = "StopStalkingButton";
             StopStalkingButton.Size = new Size(92, 22);
@@ -224,11 +234,92 @@
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
             label1.ForeColor = SystemColors.ButtonFace;
-            label1.Location = new Point(358, 2);
+            label1.Location = new Point(370, 306);
             label1.Name = "label1";
             label1.Size = new Size(101, 15);
             label1.TabIndex = 17;
             label1.Text = "created by olanga";
+            // 
+            // DiscordWebhookTextbox
+            // 
+            DiscordWebhookTextbox.Location = new Point(226, 250);
+            DiscordWebhookTextbox.Name = "DiscordWebhookTextbox";
+            DiscordWebhookTextbox.Size = new Size(245, 23);
+            DiscordWebhookTextbox.TabIndex = 18;
+            DiscordWebhookTextbox.TextChanged += DiscordWebhookTextbox_TextChanged;
+            // 
+            // WebhookLabel
+            // 
+            WebhookLabel.AutoSize = true;
+            WebhookLabel.BackColor = Color.Transparent;
+            WebhookLabel.ForeColor = SystemColors.ButtonFace;
+            WebhookLabel.Location = new Point(226, 231);
+            WebhookLabel.Name = "WebhookLabel";
+            WebhookLabel.Size = new Size(101, 15);
+            WebhookLabel.TabIndex = 19;
+            WebhookLabel.Text = "Discord Webhook";
+            // 
+            // SetWebhookButton
+            // 
+            SetWebhookButton.Location = new Point(226, 279);
+            SetWebhookButton.Name = "SetWebhookButton";
+            SetWebhookButton.Size = new Size(75, 23);
+            SetWebhookButton.TabIndex = 20;
+            SetWebhookButton.Text = "Set";
+            SetWebhookButton.UseVisualStyleBackColor = true;
+            SetWebhookButton.Click += SetWebhookButton_Click;
+            // 
+            // ResetWebhookButton
+            // 
+            ResetWebhookButton.Location = new Point(307, 279);
+            ResetWebhookButton.Name = "ResetWebhookButton";
+            ResetWebhookButton.Size = new Size(75, 23);
+            ResetWebhookButton.TabIndex = 21;
+            ResetWebhookButton.Text = "Reset";
+            ResetWebhookButton.UseVisualStyleBackColor = true;
+            ResetWebhookButton.Click += ResetWebhookButton_Click;
+            // 
+            // NotificationCheckbox
+            // 
+            NotificationCheckbox.BackColor = Color.Transparent;
+            NotificationCheckbox.ForeColor = SystemColors.ButtonFace;
+            NotificationCheckbox.Location = new Point(10, 263);
+            NotificationCheckbox.Name = "NotificationCheckbox";
+            NotificationCheckbox.Size = new Size(139, 42);
+            NotificationCheckbox.TabIndex = 22;
+            NotificationCheckbox.Text = "Notify me when rank changes";
+            NotificationCheckbox.UseVisualStyleBackColor = false;
+            NotificationCheckbox.CheckedChanged += NotificationCheckbox_CheckedChanged;
+            // 
+            // NotificationTypeCheckedListBox
+            // 
+            NotificationTypeCheckedListBox.BackColor = SystemColors.Menu;
+            NotificationTypeCheckedListBox.ForeColor = SystemColors.ControlText;
+            NotificationTypeCheckedListBox.FormattingEnabled = true;
+            NotificationTypeCheckedListBox.Items.AddRange(new object[] { "Sound", "Popup", "Discord" });
+            NotificationTypeCheckedListBox.Location = new Point(142, 263);
+            NotificationTypeCheckedListBox.Name = "NotificationTypeCheckedListBox";
+            NotificationTypeCheckedListBox.Size = new Size(78, 58);
+            NotificationTypeCheckedListBox.TabIndex = 23;
+            NotificationTypeCheckedListBox.SelectedIndexChanged += NotificationTypeCheckedListBox_SelectedIndexChanged;
+            // 
+            // RefreshRateNumericUpDown
+            // 
+            RefreshRateNumericUpDown.Location = new Point(142, 231);
+            RefreshRateNumericUpDown.Name = "RefreshRateNumericUpDown";
+            RefreshRateNumericUpDown.Size = new Size(78, 23);
+            RefreshRateNumericUpDown.TabIndex = 24;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.BackColor = Color.Transparent;
+            label2.ForeColor = SystemColors.ButtonFace;
+            label2.Location = new Point(10, 233);
+            label2.Name = "label2";
+            label2.Size = new Size(126, 15);
+            label2.TabIndex = 25;
+            label2.Text = "Refresh Rate (seconds)";
             // 
             // RankLookup
             // 
@@ -237,7 +328,15 @@
             BackColor = SystemColors.WindowFrame;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(483, 233);
+            ClientSize = new Size(483, 330);
+            Controls.Add(label2);
+            Controls.Add(RefreshRateNumericUpDown);
+            Controls.Add(NotificationTypeCheckedListBox);
+            Controls.Add(NotificationCheckbox);
+            Controls.Add(ResetWebhookButton);
+            Controls.Add(SetWebhookButton);
+            Controls.Add(WebhookLabel);
+            Controls.Add(DiscordWebhookTextbox);
             Controls.Add(label1);
             Controls.Add(StopSearchingButton);
             Controls.Add(LogsLabel);
@@ -260,6 +359,8 @@
             MaximizeBox = false;
             Name = "RankLookup";
             Text = "Rank Finder";
+            Load += RankLookup_Load_1;
+            ((System.ComponentModel.ISupportInitialize)RefreshRateNumericUpDown).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -284,5 +385,14 @@
         private Label LogsLabel;
         private Button StopSearchingButton;
         private Label label1;
+        private TextBox DiscordWebhookTextbox;
+        private Label WebhookLabel;
+        private Button SetWebhookButton;
+        private Button ResetWebhookButton;
+        private CheckBox NotificationCheckbox;
+        private CheckedListBox NotificationTypeCheckedListBox;
+        private NumericUpDown RefreshRateNumericUpDown;
+        private Label label2;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }

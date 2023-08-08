@@ -18,3 +18,4 @@ C:\Users\juliu\Desktop\Coding Projects\Rank Finder\Hearthstone Rank Finder\Heart
 C:\Users\juliu\Desktop\Coding Projects\Rank Finder\Hearthstone Rank Finder\Hearthstone Rank Finder\obj\Release\net7.0-windows\Hearthstone Rank Finder.genruntimeconfig.cache
 C:\Users\juliu\Desktop\Coding Projects\Rank Finder\Hearthstone Rank Finder\Hearthstone Rank Finder\obj\Release\net7.0-windows\ref\Hearthstone Rank Finder.dll
 C:\Users\juliu\Desktop\Coding Projects\Rank Finder\Hearthstone Rank Finder\Hearthstone Rank Finder\obj\Release\net7.0-windows\Hearthstone_Rank_Finder.Properties.Resources.resources
+C:\Users\juliu\Desktop\Coding Projects\Rank Finder\Hearthstone Rank Finder\Hearthstone Rank Finder\bin\Release\net7.0-windows\Hearthstone Rank Finder.dll.config
