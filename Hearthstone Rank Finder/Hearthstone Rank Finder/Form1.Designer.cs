@@ -312,14 +312,13 @@
             // 
             // label2
             // 
-            label2.AutoSize = true;
             label2.BackColor = Color.Transparent;
             label2.ForeColor = SystemColors.ButtonFace;
-            label2.Location = new Point(10, 233);
+            label2.Location = new Point(25, 231);
             label2.Name = "label2";
-            label2.Size = new Size(126, 15);
+            label2.Size = new Size(93, 40);
             label2.TabIndex = 25;
-            label2.Text = "Refresh Rate (seconds)";
+            label2.Text = "Stalking refresh rate in seconds";
             // 
             // RankLookup
             // 
@@ -359,7 +358,8 @@
             MaximizeBox = false;
             Name = "RankLookup";
             Text = "Rank Finder";
-            Load += RankLookup_Load_1;
+            FormClosing += RankLookup_FormClosing;
+            Load += RankLookup_Load;
             ((System.ComponentModel.ISupportInitialize)RefreshRateNumericUpDown).EndInit();
             ResumeLayout(false);
             PerformLayout();

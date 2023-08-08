@@ -1,0 +1,7 @@
+C:\Users\juliu\Desktop\Coding Projects\Rank Finder\Publish\Hearthstone Rank Finder.exe
+C:\Users\juliu\Desktop\Coding Projects\Rank Finder\Publish\Hearthstone Rank Finder.dll
+C:\Users\juliu\Desktop\Coding Projects\Rank Finder\Publish\Hearthstone Rank Finder.deps.json
+C:\Users\juliu\Desktop\Coding Projects\Rank Finder\Publish\Hearthstone Rank Finder.runtimeconfig.json
+C:\Users\juliu\Desktop\Coding Projects\Rank Finder\Publish\Hearthstone Rank Finder.dll.config
+C:\Users\juliu\Desktop\Coding Projects\Rank Finder\Publish\Hearthstone Rank Finder.pdb
+C:\Users\juliu\Desktop\Coding Projects\Rank Finder\Publish\Newtonsoft.Json.dll

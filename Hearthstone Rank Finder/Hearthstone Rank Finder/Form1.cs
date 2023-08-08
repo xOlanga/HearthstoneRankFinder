@@ -11,6 +11,7 @@ using System.Text;
 using static System.Net.Mime.MediaTypeNames;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using System.Security.Policy;
+using System.Collections.Concurrent;
 
 namespace Hearthstone_Rank_Finder
 {
@@ -39,23 +40,45 @@ namespace Hearthstone_Rank_Finder
             rankChangedTTS = new SoundPlayer(Properties.Resources.RankChangedTTS);
             NotificationTypeCheckedListBox.Enabled = false;
         }
-
+        private void LoadSettings()
+        {
+            SelectRegionComboBox.SelectedItem = Properties.Settings.Default.Region;
+            SelectSeasonTextBox.Text = Properties.Settings.Default.Season;
+            SelectModeComboBox.SelectedItem = Properties.Settings.Default.Mode;
+            SearchPlayerTextBox.Text = Properties.Settings.Default.PlayerName;
+            DiscordWebhookTextbox.Text = Properties.Settings.Default.DiscordWebhookURL;
+        }
+        private void SaveSettings()
+        {
+            Properties.Settings.Default.Region = SelectRegionComboBox.SelectedItem?.ToString() ?? "";
+            Properties.Settings.Default.Season = SelectSeasonTextBox.Text.Trim();
+            Properties.Settings.Default.Mode = SelectModeComboBox.SelectedItem?.ToString() ?? "";
+            Properties.Settings.Default.PlayerName = SearchPlayerTextBox.Text.Trim();
+            Properties.Settings.Default.DiscordWebhookURL = DiscordWebhookTextbox.Text.Trim();
+            Properties.Settings.Default.Save();
+        }
         private void RankLookup_Load(object sender, EventArgs e)
         {
+            LoadSettings();
 
             if (!string.IsNullOrWhiteSpace(Properties.Settings.Default.DiscordWebhookURL))
             {
-                DiscordWebhookTextbox.Enabled = false;
-                SetWebhookButton.Enabled = false;
+                DiscordWebhookTextbox.Enabled = true;
+                SetWebhookButton.Enabled = true;
                 ResetWebhookButton.Enabled = true;
             }
             else
             {
                 DiscordWebhookTextbox.Enabled = true;
-                SetWebhookButton.Enabled = false;
-                ResetWebhookButton.Enabled = false;
+                SetWebhookButton.Enabled = true;
+                ResetWebhookButton.Enabled = true;
             }
         }
+        private void RankLookup_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            SaveSettings();
+        }
+
 
         private async void SearchButton_Click(object sender, EventArgs e)
         {
@@ -204,7 +227,10 @@ namespace Hearthstone_Rank_Finder
                                     }
 
                                     // Delay for inner loop
-
+                                    // Delay between rank checks based on RefreshRateNumericUpDown value
+                                    int refreshRateInSeconds = (int)RefreshRateNumericUpDown.Value;
+                                    LogMessage($"Delay: {refreshRateInSeconds}");
+                                    await Task.Delay(refreshRateInSeconds * 1000);
 
                                 }
                             }
@@ -231,7 +257,7 @@ namespace Hearthstone_Rank_Finder
         }
         private async Task GetPlayerRanks(string season, string region, string mode, string playerName, int currentPage)
         {
-            while (true)
+            while (isSearching)
             {
                 try
                 {
@@ -239,49 +265,41 @@ namespace Hearthstone_Rank_Finder
                     {
                         playerFoundPage = -1; // Reset playerFoundPage before each search
 
-                        // Loop through the pages until the player is found or all pages are fetched
-                        while (true)
+                        string url = $"https://hearthstone.blizzard.com/en-us/api/community/leaderboardsData?region={region}&leaderboardId={mode}&seasonId={season}&page={currentPage}";
+                        LogMessage($"Fetching data from leaderboards... {currentPage}");
+
+                        HttpResponseMessage response = await client.GetAsync(url);
+                        response.EnsureSuccessStatusCode();
+
+                        string jsonContent = await response.Content.ReadAsStringAsync();
+
+                        LeaderboardData leaderboardData = JsonConvert.DeserializeObject<LeaderboardData>(jsonContent);
+
+                        if (leaderboardData != null && leaderboardData.Leaderboard != null && leaderboardData.Leaderboard.Rows.Count > 0)
                         {
-                            if (!isSearching) return;
-
-                            string url = $"https://hearthstone.blizzard.com/en-us/api/community/leaderboardsData?region={region}&leaderboardId={mode}&seasonId={season}&page={currentPage}";
-                            LogMessage($"Fetching data from leaderboards... {currentPage}");
-
-                            HttpResponseMessage response = await client.GetAsync(url);
-                            response.EnsureSuccessStatusCode();
-
-                            string jsonContent = await response.Content.ReadAsStringAsync();
-
-                            LeaderboardData leaderboardData = JsonConvert.DeserializeObject<LeaderboardData>(jsonContent);
-
-                            if (leaderboardData != null && leaderboardData.Leaderboard != null && leaderboardData.Leaderboard.Rows.Count > 0)
+                            var playerRow = leaderboardData.Leaderboard.Rows.FirstOrDefault(row => row.AccountId == playerName);
+                            if (playerRow != null)
                             {
-                                foreach (var row in leaderboardData.Leaderboard.Rows)
-                                {
-                                    if (row.AccountId == playerName)
-                                    {
-                                        playerFoundPage = currentPage; // Record the page number where the player was found
-                                        LogMessage($"Player {playerName} found on page {currentPage}!");
-                                        StopSearchingButton.Enabled = false;
-                                        CurrentRankRichTextBox.Text = $"Player found on page {currentPage}!\nRank: {row.Rank}";
-                                        playerFoundSound.Play();
-                                        Thread.Sleep(1500);
-                                        playerFoundTTS.Play();
-                                        currentRank = row.Rank;
-                                        return; // Stop the loop once the player is found
-                                    }
-                                }
+                                playerFoundPage = currentPage; // Record the page number where the player was found
+                                LogMessage($"Player {playerName} found on page {currentPage}!");
+                                StopSearchingButton.Enabled = false;
+                                CurrentRankRichTextBox.Text = $"Player found on page {currentPage}!\nRank: {playerRow.Rank}";
+                                playerFoundSound.Play();
+                                await Task.Delay(1500);
+                                playerFoundTTS.Play();
+                                currentRank = playerRow.Rank;
+                                break; // Stop the loop once the player is found
                             }
-
-                            int totalPages = leaderboardData?.Leaderboard?.Pagination?.TotalPages ?? 0;
-                            if (currentPage >= totalPages)
-                            {
-                                LogMessage("Reached Last Page.");
-                                break;
-                            }
-
-                            currentPage++; // Move this inside the while loop to go to the next page after processing the current one
                         }
+
+                        int totalPages = leaderboardData?.Leaderboard?.Pagination?.TotalPages ?? 0;
+                        if (currentPage >= totalPages)
+                        {
+                            LogMessage("Reached Last Page.");
+                            break;
+                        }
+
+                        currentPage++; // Move this inside the while loop to go to the next page after processing the current one
                     }
                 }
                 catch (Exception ex)
@@ -518,5 +536,7 @@ namespace Hearthstone_Rank_Finder
         {
 
         }
+
+
     }
 }
