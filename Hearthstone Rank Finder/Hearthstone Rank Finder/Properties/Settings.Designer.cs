@@ -82,5 +82,52 @@ namespace Hearthstone_Rank_Finder.Properties {
                 this["Region"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool NotificationEnabled {
+            get {
+                return ((bool)(this["NotificationEnabled"]));
+            }
+            set {
+                this["NotificationEnabled"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int StalkingRange {
+            get {
+                return ((int)(this["StalkingRange"]));
+            }
+            set {
+                this["StalkingRange"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int RefreshRate {
+            get {
+                return ((int)(this["RefreshRate"]));
+            }
+            set {
+                this["RefreshRate"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Collections.Specialized.StringCollection NotificationTypeCheckedList {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["NotificationTypeCheckedList"]));
+            }
+            set {
+                this["NotificationTypeCheckedList"] = value;
+            }
+        }
     }
 }
